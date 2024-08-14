@@ -14,6 +14,9 @@ export interface Props {
    * @default Click here to tweak this text however you want.
    */
   title?: string;
+  /**
+   * @default This text is fully editable and ready for your personal touch. Just click here, head over to the section window, or dive straight into the code to make changes as you see fit. Whether it's about the content, formatting, font, or anything in between, editing is just a click away.
+   */
   description?: string;
   image?: ImageWidget;
   placement?: "left" | "right";
@@ -27,25 +30,29 @@ const PLACEMENT = {
 
 export default function HeroFlats({
   title = "Click here to tweak this text however you want.",
-  description = "This text is entirely editable, tailor it freely.",
+  description =
+    "This text is fully editable and ready for your personal touch. Just click here, head over to the section window, or dive straight into the code to make changes as you see fit. Whether it's about the content, formatting, font, or anything in between, editing is just a click away.",
   image,
   placement = "left",
-  cta,
+  cta = [
+    { id: "change-me-1", href: "/", text: "Change me", outline: false },
+    { id: "change-me-2", href: "/", text: "Change me", outline: true },
+  ],
 }: Props) {
   return (
-    <div>
-      <div class="flex flex-col gap-8 items-center mx-auto">
+    <nav class="lg:container lg:mx-auto mx-4">
+      <div class="flex flex-col items-center gap-8">
         <div
           class={`flex w-full xl:container xl:mx-auto py-20 mx-5 md:mx-10 z-10 ${
             image
               ? PLACEMENT[placement]
               : "flex-col items-center justify-center text-center"
-          } lg:pt-36 lg:pb-20 gap-12 md:gap-20 items-center`}
+          } lg:py-36 gap-12 md:gap-20 items-center`}
         >
           {image && (
             <Image
               width={640}
-              class="lg:w-1/2 object-fit w-full"
+              class="w-full lg:w-1/2 object-fit"
               sizes="(max-width: 640px) 100vw, 30vw"
               src={image}
               alt={image}
@@ -61,36 +68,33 @@ export default function HeroFlats({
             }`}
           >
             <div
-              class="font-medium inline-block leading-[100%] lg:text-[90px] text-4xl tracking-[-2.4px]"
+              class="inline-block lg:text-[80px] text-4xl leading-none font-medium"
               dangerouslySetInnerHTML={{
                 __html: title,
               }}
             >
             </div>
-            <p class="leading-[150%] md:text-md text-lg">
+            <p class="text-lg md:text-md leading-[150%]">
               {description}
             </p>
-            {cta && cta.length > 0 &&
-              (
-                <div class="flex gap-3 items-center lg:pt-20">
-                  {cta?.map((item) => (
-                    <a
-                      key={item?.id}
-                      id={item?.id}
-                      href={item?.href}
-                      target={item?.href.includes("http") ? "_blank" : "_self"}
-                      class={`font-normal btn btn-primary ${
-                        item.outline && "btn-outline"
-                      }`}
-                    >
-                      {item?.text}
-                    </a>
-                  ))}
-                </div>
-              )}
+            <div class="flex items-center gap-3">
+              {cta?.map((item) => (
+                <a
+                  key={item?.id}
+                  id={item?.id}
+                  href={item?.href}
+                  target={item?.href.includes("http") ? "_blank" : "_self"}
+                  class={`font-normal btn btn-primary ${
+                    item.outline && "btn-outline"
+                  }`}
+                >
+                  {item?.text}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

@@ -1,6 +1,5 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
-import Icon from "site/components/ui/Icon.tsx";
 
 export interface CTA {
   id?: string;
@@ -45,7 +44,7 @@ export default function ImageWithParagraph({
   ],
 }: Props) {
   return (
-    <div class="container lg:mx-auto mx-4 text-sm">
+    <div class="lg:container md:max-w-6xl lg:mx-auto mx-4 text-sm">
       <div
         class={`flex ${
           PLACEMENT[placement]
@@ -56,6 +55,7 @@ export default function ImageWithParagraph({
         <div class="w-full md:w-1/2 border border-secondary rounded-lg overflow-hidden">
           <Image
             width={640}
+            height={640}
             class="object-fit z-10"
             sizes="(max-width: 640px) 100vw, 30vw"
             src={image}
@@ -88,7 +88,18 @@ export default function ImageWithParagraph({
               >
                 {item?.text}
                 {item.style == "Ghost" && (
-                  <Icon id="ChevronRight" width={24} height={25} />
+                  <svg
+                    width="24"
+                    height="25"
+                    viewBox="0 0 24 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.70697 16.9767L15.414 11.2697L9.70697 5.56274L8.29297 6.97674L12.586 11.2697L8.29297 15.5627L9.70697 16.9767Z"
+                      fill="#18181B"
+                    />
+                  </svg>
                 )}
               </a>
             ))}

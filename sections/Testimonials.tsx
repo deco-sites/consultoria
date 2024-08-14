@@ -1,7 +1,7 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "../components/ui/Icon.tsx";
-import Slider from "../components/ui/Slider/index.tsx";
+import Slider from "../components/ui/Slider.tsx";
 import { useId } from "../sdk/useId.ts";
 
 /**
@@ -171,7 +171,7 @@ function Buttons() {
           <Icon
             class="text-base-content"
             size={24}
-            id="ChevronRight"
+            id="ArrowRight"
             strokeWidth={3}
           />
         </Slider.PrevButton>
@@ -181,7 +181,7 @@ function Buttons() {
           <Icon
             class="text-base-content"
             size={24}
-            id="ChevronLeft"
+            id="ArrowLeft"
             strokeWidth={3}
           />
         </Slider.NextButton>
@@ -197,7 +197,7 @@ function Carousel(props: Props) {
   return (
     <div
       id={id}
-      class="min-h-min flex flex-col container lg:mx-auto mx-4 py-12 lg:py-28"
+      class="min-h-min flex flex-col lg:container md:max-w-6xl lg:mx-auto mx-4 py-12 lg:py-28"
     >
       <h2 class="text-4xl leading-snug lg:w-1/2 pb-12 lg:pb-16">
         {title}
